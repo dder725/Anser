@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Person from '../components/Person';
-import data from '../data.json';
+import data from '../resources/users.json';
 
 const Matching = () => {
   const [people, setPeople] = useState(data);
