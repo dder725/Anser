@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Chat from "./pages/Chat";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import MessageThreads from "./pages/MessageThreads"
 import { auth } from "./services/firebase";
 import './styles.css';
 
@@ -78,6 +79,11 @@ class App extends Component {
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
+            <PrivateRoute 
+              path="/threads"
+              authenticated={this.state.authenticated}
+              component={MessageThreads}
+              />
             <PrivateRoute
               path="/chat"
               authenticated={this.state.authenticated}

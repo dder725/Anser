@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { signin, signInWithGoogle, signInWithGitHub, signInWithFacebook } from "../helpers/auth";
+import {Avatar}   from "react-chat-ui"
 
 export default class Login extends Component {
   constructor() {
@@ -112,7 +113,6 @@ export default class Login extends Component {
           <button className="btn btn-secondary mr-2" type="button" onClick={this.githubSignIn}>
             Sign in with GitHub
           </button>
-
           <hr />
           <p>
             Don't have an account? <Link to="/signup">Sign up</Link>

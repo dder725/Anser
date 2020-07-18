@@ -17,3 +17,11 @@ export function writeChats(message) {
     uid: message.uid
   });
 }
+
+export function writeUser(user) {
+  return db.ref("users").push({
+    content: user.content,
+    uid: user.uid
+  }
+  )
+}
