@@ -11,6 +11,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import MessageThreads from "./pages/MessageThreads";
 import Matching from "./pages/Matching";
+import Verify from "./pages/Verify";
 import { auth } from "./services/firebase";
 import './styles.css';
 
@@ -39,7 +40,7 @@ function PublicRoute({ component: Component, authenticated, ...rest }) {
         authenticated === false ? (
           <Component {...props} />
         ) : (
-            <Redirect to="/matching" />
+            <Redirect to="/verify" />
           )
       }
     />
@@ -93,6 +94,11 @@ class App extends Component {
               path="/chat"
               authenticated={this.state.authenticated}
               component={Chat}
+            />
+            <PrivateRoute
+              path="/verify"
+              authenticated={this.state.authenticated}
+              component={Verify}
             />
             <PublicRoute
               path="/signup"

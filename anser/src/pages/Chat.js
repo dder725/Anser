@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Header from "../components/Header";
 import { auth } from "../services/firebase";
 import { db } from "../services/firebase";
-import { MessageBox, SystemMessage } from 'react-chat-elements'
+import { MessageBox, SystemMessage } from 'react-chat-elements';
 import questions from '../resources/questions.json'
 export default class Chat extends Component {
   constructor(props) {
@@ -19,6 +19,7 @@ export default class Chat extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.nextQuestion = this.nextQuestion.bind(this);
     this.myRef = React.createRef();
   }
 
@@ -35,25 +36,7 @@ export default class Chat extends Component {
           this.setState({
             question: this.getRandomQuestion()
           })
-          
-        } else if (chats.length === 5) {
-          this.setState({
-            questionTime: true,
-            question: this.getRandomQuestion()
-          })
-        } else if (chats.length === 10) {
-          this.setState({
-            question: this.getRandomQuestion()
-          })
-        } else if (chats.length === 15) {
-          this.setState({
-            question: this.getRandomQuestion()
-          })
-        } else if (chats.length === 20) {
-          this.setState({
-            question: this.getRandomQuestion()
-          })
-        } 
+        }
         
         chats.sort(function (a, b) { return a.timestamp - b.timestamp })
         this.setState({ chats });
@@ -94,6 +77,12 @@ export default class Chat extends Component {
     }
   }
 
+  nextQuestion() {
+    this.setState({
+      question: this.getRandomQuestion()
+    })
+  }
+
   formatTime(timestamp) {
     const d = new Date(timestamp);
     const time = `${d.getDate()}/${(d.getMonth() + 1)}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}`;
@@ -112,9 +101,14 @@ export default class Chat extends Component {
           </div> : ""}
           {/* chat area */}
           <div style={{position: "sticky", top: '0px'}}>
-          {(this.state.question) && 
-            <SystemMessage 
-              text={'Question time: "' + this.state.question} />}
+          {(this.state.question) &&
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}> 
+            <div
+              style={{width: '85%', border: '2px solid black', borderRadius:'10px', padding:'10px', backgroundColor: 'rgba(255,222,89,0.2)', fontWeight:'bolder'}}>{'Question time: "' + this.state.question}</div>
+              <div style={{width: "12%", textAlign: 'center', marginLeft:'3%'}}><button onClick={this.nextQuestion} className="btn btn-secondary">Next Question</button></div>
+              </div>
+              }
+              
               </div>
           {this.state.chats.map(chat => {
             return <p key={chat.timestamp}>
@@ -135,7 +129,7 @@ export default class Chat extends Component {
         <form onSubmit={this.handleSubmit} className="mx-3">
           <textarea className="form-control" name="content" onChange={this.handleChange} value={this.state.content}></textarea>
           {this.state.error ? <p className="text-danger">{this.state.error}</p> : null}
-          <button type="submit" className="btn btn-submit px-5 mt-4">Send</button>
+          <button type="submit" className="btn btn-primary px-5 mt-4">Send</button>
         </form>
         <div className="py-5 mx-3">
           Login in as: <strong className="text-info">{this.state.user.email}</strong>

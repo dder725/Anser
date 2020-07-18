@@ -16,6 +16,7 @@
     "react-chat-elements": "^10.9.2",
     "react-chat-ui": "^0.3.2",
     "react-dom": "^16.12.0",
+    "react-images-upload": "^1.2.8",
     "react-router-dom": "5.1.2",
     "react-scripts": "3.0.1"
   },
