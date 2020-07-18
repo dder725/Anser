@@ -18,6 +18,10 @@ export function signInWithGitHub() {
   return auth().signInWithPopup(provider);
 }
 
+export function signInWithFacebook() {
+  const provider = new auth.FacebookAuthProvider();
+  return auth().signInWithPopup(provider);
+}
 export function logout() {
   return auth().signOut();
 }
