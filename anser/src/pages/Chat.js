@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Header from "../components/Header";
 import { auth } from "../services/firebase";
 import { db } from "../services/firebase";
-import { MessageBox } from 'react-chat-elements'
-
+import { MessageBox, SystemMessage } from 'react-chat-elements'
+import questions from '../resources/questions.json'
 export default class Chat extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +13,9 @@ export default class Chat extends Component {
       content: '',
       readError: null,
       writeError: null,
-      loadingChats: false
+      loadingChats: false,
+      questionTime: true,
+      question: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,6 +31,30 @@ export default class Chat extends Component {
         snapshot.forEach((snap) => {
           chats.push(snap.val());
         });
+        if (chats.length === 0 && this.state.question === '') {
+          this.setState({
+            question: this.getRandomQuestion()
+          })
+          
+        } else if (chats.length === 5) {
+          this.setState({
+            questionTime: true,
+            question: this.getRandomQuestion()
+          })
+        } else if (chats.length === 10) {
+          this.setState({
+            question: this.getRandomQuestion()
+          })
+        } else if (chats.length === 15) {
+          this.setState({
+            question: this.getRandomQuestion()
+          })
+        } else if (chats.length === 20) {
+          this.setState({
+            question: this.getRandomQuestion()
+          })
+        } 
+        
         chats.sort(function (a, b) { return a.timestamp - b.timestamp })
         this.setState({ chats });
         chatArea.scrollBy(0, chatArea.scrollHeight);
@@ -45,6 +71,12 @@ export default class Chat extends Component {
     });
   }
 
+  getRandomQuestion() {
+    const keys = Object.keys(questions)
+    const randIndex = Math.floor(Math.random() * keys.length)
+    const randKey = keys[randIndex]
+    return questions[randKey]
+  }
   async handleSubmit(event) {
     event.preventDefault();
     this.setState({ writeError: null });
@@ -72,13 +104,18 @@ export default class Chat extends Component {
     return (
       <div>
         <Header />
-        
+
         <div className="chat-area" ref={this.myRef}>
           {/* loading indicator */}
           {this.state.loadingChats ? <div className="spinner-border text-success" role="status">
             <span className="sr-only">Loading...</span>
           </div> : ""}
           {/* chat area */}
+          <div style={{position: "sticky", top: '0px'}}>
+          {(this.state.question) && 
+            <SystemMessage 
+              text={'Question time: "' + this.state.question} />}
+              </div>
           {this.state.chats.map(chat => {
             return <p key={chat.timestamp}>
               {this.state.user.uid !== chat.uid}{

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { signup, signInWithGoogle, signInWithGitHub, signInWithFacebook } from "../helpers/auth";
+import { db } from "../services/firebase";
 
 export default class SignUp extends Component {
 
@@ -29,6 +30,13 @@ export default class SignUp extends Component {
     this.setState({ error: '' });
     try {
       await signup(this.state.email, this.state.password);
+      try {
+        await db.ref("users").push({
+          email: this.state.email
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
     } catch (error) {
       this.setState({ error: error.message });
     }

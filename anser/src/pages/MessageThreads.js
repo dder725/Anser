@@ -5,13 +5,27 @@ import 'react-chat-elements/dist/main.css';
 import { ChatList } from 'react-chat-elements'
 import { AvatarGenerator } from 'random-avatar-generator';
 import { Link, Redirect } from 'react-router-dom'
+import { db } from "../services/firebase";
 var humanNames = require('human-names');
 export default class MessageThreads extends Component {
-   state = {
+    constructor(props) {
+        super(props);
+        this.state = {
        redirect: false,
-   }
-    
+        };
+    this.createChatRoom = this.createChatRoom.bind(this);
+      }
+
+   async createChatRoom(userName) {
+    try {
+      await db.ref("chatRoom").push({
+        userName: userName
+      })} catch (error) {
+      console.log(error.message);
+    }
+  }
     handleOnClick = (chatItem) => {
+        this.createChatRoom(chatItem.title)
         this.setState({ redirect: true, partnerName: chatItem.title  });
     }
 
@@ -92,7 +106,7 @@ export default class MessageThreads extends Component {
                         date: new Date(),
                         unread: 2,
                     }
-                ]} /><div class="d-flex justify-content-center"><Link to='/matching'><Button>Match with new people!</Button></Link></div></div>
+                ]} /><div className="d-flex justify-content-center"><Link to='/matching'><Button>Match with new people!</Button></Link></div></div>
         )
     }
 }

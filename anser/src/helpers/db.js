@@ -25,3 +25,12 @@ export function writeUser(user) {
   }
   )
 }
+
+export function getChatRoom(userName){
+  return
+}
+export function createChatRoom(userName) {
+  return db.ref("chatRoom").push({
+    userName: userName
+  })
+}
