@@ -38,7 +38,7 @@ function PublicRoute({ component: Component, authenticated, ...rest }) {
         authenticated === false ? (
           <Component {...props} />
         ) : (
-            <Redirect to="/threads" />
+            <Redirect to="/matching" />
           )
       }
     />
@@ -79,6 +79,10 @@ class App extends Component {
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
+            {/* <PrivateRoute
+              path="/matching" 
+              authenticated={this.state.authenticated}
+              component={Matching}/> */}
             <PrivateRoute 
               path="/threads"
               authenticated={this.state.authenticated}
