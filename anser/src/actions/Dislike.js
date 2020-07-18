@@ -1,11 +1,13 @@
 import React from 'react';
+import dislike from './img/dislike.png';
 
 const Dislike = ({ userId, modifySuperficialChoices }) => (
   <button
+    className="likeOptions"
     type="button"
     onClick={() => modifySuperficialChoices(userId, 'ADD_TO_DISLIKED_USERS')}
   >
-    <img src="images/misc/dislike.png" alt="Dislike User" />
+    <img src={dislike} alt="Dislike User" />
   </button>
 );
 
