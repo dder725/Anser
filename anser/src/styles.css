@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
   background-color: #fcfcfc;
 }
-
 .chat-area, .home {
   margin-top: 60px;
 }
 
 .chat-area {
+  margin-right: auto;
   padding: 20px;
   height: 400px;
   overflow-y: scroll;
@@ -43,8 +43,13 @@ body {
   box-shadow: none;
 }
 
-.btn {
-  margin-top: 10px;
+.btn-primary {
+  background-color: #da17118f;
+  border-color: #da17118f;
+}
+
+.rce-container-mbox {
+ max-width: 650px;
 }
 
 .btn-submit {
@@ -58,7 +63,7 @@ body {
   }
 
   .chat-area .chat-bubble {
-    max-width: 250px;
+    max-width: 20px;
   }
 }
 
