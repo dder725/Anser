@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
+import logo from './images/_Logo.jpg'
 
 export default class HomePage extends Component {
   render() {
