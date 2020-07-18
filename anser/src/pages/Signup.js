@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { signup, signInWithGoogle, signInWithGitHub } from "../helpers/auth";
+import { signup, signInWithGoogle, signInWithGitHub, signInWithFacebook } from "../helpers/auth";
 
 export default class SignUp extends Component {
 
@@ -15,6 +15,7 @@ export default class SignUp extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.googleSignIn = this.googleSignIn.bind(this);
     this.githubSignIn = this.githubSignIn.bind(this);
+    this.facebookSignIn = this.facebookSignIn.bind(this);
   }
 
   handleChange(event) {
@@ -49,7 +50,13 @@ export default class SignUp extends Component {
       this.setState({ error: error.message });
     }
   }
-
+  async facebookSignIn() {
+    try {
+      await signInWithFacebook();
+    } catch(error) {
+      this.setState({error: error.message })
+    }
+  }
   render() {
     return (
       <div className="container">
@@ -70,6 +77,9 @@ export default class SignUp extends Component {
             <button className="btn btn-primary px-5" type="submit">Sign up</button>
           </div>
           <p>You can also sign up with any of these services</p>
+          <button className="btn btn-primary mr-2" type="button" onClick={this.facebookSignIn}>
+            Sign in with Facebook
+          </button>
           <button className="btn btn-danger mr-2" type="button" onClick={this.googleSignIn}>
             Sign up with Google
           </button>
