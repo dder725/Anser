@@ -9,7 +9,8 @@ import Home from "./pages/Home";
 import Chat from "./pages/Chat";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import MessageThreads from "./pages/MessageThreads"
+import MessageThreads from "./pages/MessageThreads";
+import Matching from "./pages/Matching";
 import { auth } from "./services/firebase";
 import './styles.css';
 
@@ -79,10 +80,10 @@ class App extends Component {
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
-            {/* <PrivateRoute
+            <PrivateRoute
               path="/matching" 
               authenticated={this.state.authenticated}
-              component={Matching}/> */}
+              component={Matching}/>
             <PrivateRoute 
               path="/threads"
               authenticated={this.state.authenticated}
