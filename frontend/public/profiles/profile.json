@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "photo": "photos/girl1.jpg",
+        "name": "Anna",
+        "age": 20,
+        "looking_for": "relationship"
+    },
+    {
+        "id": 2,
+        "photo": "photos/girl2.jpg",
+        "name": "Becky",
+        "age": 24,
+        "looking_for": "relationship"
+    },
+    {
+        "id": 3,
+        "photo": "photos/girl3.jpg",
+        "name": "Cecilia",
+        "age": 22,
+        "looking_for": "relationship"
+    },
+    {
+        "id": 4,
+        "photo": "photos/girl4.jpg",
+        "name": "Dani",
+        "age": 25,
+        "looking_for": "relationship"
+    },
+    {
+        "id": 5,
+        "photo": "photos/girl5.jpg",
+        "name": "`Eden",
+        "age": 20,
+        "looking_for": "relationship"
+    },
+    {
+        "id": 6,
+        "photo": "photos/girl6.jpg",
+        "name": "Frankie",
+        "age": 18,
+        "looking_for": "relationship"
+    },
+    {
+        "id": 7,
+        "photo": "photos/girl7.jpg",
+        "name": "Georgia",
+        "age": 26,
+        "looking_for": "relationship"
+    },
+    {
+        "id": 8,
+        "photo": "photos/girl8.jpg",
+        "name": "Helen",
+        "age": 21,
+        "looking_for": "relationship"
+    },
+    {
+        "id": 9,
+        "photo": "photos/girl9.jpg",
+        "name": "Indie",
+        "age": 24,
+        "looking_for": "relationship"
+    },
+    {
+        "id": 10,
+        "photo": "photos/girl10.jpg",
+        "name": "Jess",
+        "age": 23,
+        "looking_for": "relationship"
+    }
+]
