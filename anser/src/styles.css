@@ -65,5 +65,37 @@ body {
   .chat-area .chat-bubble {
     max-width: 20px;
   }
+}
 
+/* matching profiles */
+
+.cardContainer{
+  width: 90%;
+  margin: 5em auto;
+  border: 1px lightgrey solid;
+}
+
+.cardContainer img{
+  display: block;
+  margin: auto;
+}
+
+/* like buttons */
+
+#actions{
+  justify-content: space-evenly;
+  display: flex;
+}
+
+.likeOptions{
+  border: none;
+  border-radius: 1em;
+  padding: 1em 4em;
+  margin: 1em;
+  outline: none!important;
+}
+
+.likeOptions img{
+  height: 3em;
+  /* background-color: green; */
 }
