@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "../components/Header";
 import { auth } from "../services/firebase";
 import { db } from "../services/firebase";
+import { MessageBox } from 'react-chat-elements'
 
 export default class Chat extends Component {
   constructor(props) {
@@ -63,7 +64,7 @@ export default class Chat extends Component {
 
   formatTime(timestamp) {
     const d = new Date(timestamp);
-    const time = `${d.getDate()}/${(d.getMonth()+1)}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}`;
+    const time = `${d.getDate()}/${(d.getMonth() + 1)}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}`;
     return time;
   }
 
@@ -71,7 +72,7 @@ export default class Chat extends Component {
     return (
       <div>
         <Header />
-
+        
         <div className="chat-area" ref={this.myRef}>
           {/* loading indicator */}
           {this.state.loadingChats ? <div className="spinner-border text-success" role="status">
@@ -79,10 +80,18 @@ export default class Chat extends Component {
           </div> : ""}
           {/* chat area */}
           {this.state.chats.map(chat => {
-            return <p key={chat.timestamp} className={"chat-bubble " + (this.state.user.uid === chat.uid ? "current-user" : "")}>
-              {chat.content}
+            return <p key={chat.timestamp}>
+              {this.state.user.uid !== chat.uid}{
+
+              }
+              <MessageBox
+                position={(this.state.user.uid === chat.uid) ? "right" : "left"}
+                title={(this.state.user.uid !== chat.uid) ? this.props.location.state.partnerName : "you"}
+                type={'text'}
+                date={chat.timestamp}
+                text={chat.content}
+              />
               <br />
-              <span className="chat-time float-right">{this.formatTime(chat.timestamp)}</span>
             </p>
           })}
         </div>

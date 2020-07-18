@@ -8,15 +8,19 @@ import { Link, Redirect } from 'react-router-dom'
 var humanNames = require('human-names');
 export default class MessageThreads extends Component {
    state = {
-       redirect: false
+       redirect: false,
    }
     
-    handleOnClick = () => {
-        this.setState({ redirect: true });
+    handleOnClick = (chatItem) => {
+        this.setState({ redirect: true, partnerName: chatItem.title  });
     }
+
     render() {
         if (this.state.redirect) {
-            return <Redirect push to="/chat" />;
+            return <Redirect push to={{
+                pathname: '/chat',
+                state: { partnerName: this.state.partnerName, partnerImage: this.state.avatar }
+            }} />;
         }
         const generator = new AvatarGenerator();
         return (<div>
