@@ -117,7 +117,7 @@ export default class Chat extends Component {
               }
               <MessageBox
                 position={(this.state.user.uid === chat.uid) ? "right" : "left"}
-                title={(this.state.user.uid !== chat.uid) ? this.props.location.state.partnerName : "you"}
+                title={(this.state.user.uid !== chat.uid) ? "Vinny" : "you"}
                 type={'text'}
                 date={chat.timestamp}
                 text={chat.content}
