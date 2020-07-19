@@ -80,6 +80,18 @@ body {
   margin: auto;
 }
 
+.details{
+  display: flex;
+}
+
+.name{
+  font-weight: bold;
+}
+
+.age{
+  font-weight: lighter;
+}
+
 /* like buttons */
 
 #actions{

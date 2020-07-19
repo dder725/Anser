@@ -16,8 +16,10 @@ const Person = ({ person, modifySuperficialChoices }) => {
       <Header/>
       <div className="cardContainer">
         <img src={avatar} alt={name}></img>
-        <h2>{name}</h2>
-        <h4>{age}</h4>
+        <div className="details">
+          <h2 className="name">{name},&nbsp;&nbsp;</h2>
+          <h2 className="age">{age}</h2>
+        </div>
       </div> 
 
       <Actions
