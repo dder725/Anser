@@ -32,7 +32,7 @@ export default class Chat extends Component {
         snapshot.forEach((snap) => {
           chats.push(snap.val());
         });
-        if (chats.length === 0 && this.state.question === '') {
+        if (chats.length === 0 ) {
           this.setState({
             question: this.getRandomQuestion()
           })
