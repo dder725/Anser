@@ -15,7 +15,8 @@ export default class Chat extends Component {
       writeError: null,
       loadingChats: false,
       questionTime: true,
-      question: ""
+      question: "",
+      question: this.getRandomQuestion()
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,11 +33,6 @@ export default class Chat extends Component {
         snapshot.forEach((snap) => {
           chats.push(snap.val());
         });
-        if (chats.length === 0 ) {
-          this.setState({
-            question: this.getRandomQuestion()
-          })
-        }
         
         chats.sort(function (a, b) { return a.timestamp - b.timestamp })
         this.setState({ chats });
@@ -104,12 +100,13 @@ export default class Chat extends Component {
           {(this.state.question) &&
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}> 
             <div
-              style={{width: '85%', border: '2px solid black', borderRadius:'10px', padding:'10px', backgroundColor: 'rgba(255,222,89,0.2)', fontWeight:'bolder'}}>{'Question time: "' + this.state.question}</div>
+              style={{width: '70%', border: '2px solid black', borderRadius:'10px', padding:'10px', backgroundColor: 'rgba(255,222,89,0.2)', fontWeight:'bolder', marginLeft: '15%'}}>{'Question time: "' + this.state.question}</div>
               <div style={{width: "12%", textAlign: 'center', marginLeft:'3%'}}><button onClick={this.nextQuestion} className="btn btn-secondary">Next Question</button></div>
               </div>
               }
               
               </div>
+          <div style={{textAlign: 'center', marginLeft: '20%', paddingTop: '20px'}}>
           {this.state.chats.map(chat => {
             return <p key={chat.timestamp}>
               {this.state.user.uid !== chat.uid}{
@@ -125,11 +122,12 @@ export default class Chat extends Component {
               <br />
             </p>
           })}
+          </div>
         </div>
-        <form onSubmit={this.handleSubmit} className="mx-3">
+        <form onSubmit={this.handleSubmit} className="mx-3" style ={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
           <textarea className="form-control" name="content" onChange={this.handleChange} value={this.state.content}></textarea>
           {this.state.error ? <p className="text-danger">{this.state.error}</p> : null}
-          <button type="submit" className="btn btn-primary px-5 mt-4">Send</button>
+          <button type="submit" className="btn btn-primary px-5 mt-4" style={{marginBottom:"20px", marginLeft:"10px"}}>Send</button>
         </form>
         <div className="py-5 mx-3">
           Login in as: <strong className="text-info">{this.state.user.email}</strong>
